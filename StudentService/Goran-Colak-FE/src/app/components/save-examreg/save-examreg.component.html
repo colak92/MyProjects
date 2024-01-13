@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="card col-md-6 offset-md-3 offset-md-3">
+        <h3 class="text-center"> Exam Registration </h3>
+            <hr />
+        <div class="row">
+            <div class="card-body">
+                <form [formGroup]="saveForm" (ngSubmit)="onSaveFormSubmit()">
+
+                    <div class="form-group">
+                        <label for="student"> Student</label>
+                        <select class="form-control" formControlName="student" [compareWith]="compareStudents" readonly="true">
+                            <option *ngFor="let s of students" [ngValue]="s" disabled="true">{{ s.firstname + ' ' + s.lastname }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label> JMBG</label>
+                        <input type="number" class="form-control" id="jmbg" formControlName="jmbg" readonly="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="examperiod"> Exam Period</label>
+                        <select class="form-control" formControlName="examperiod" [compareWith]="compareExamPeriods" readonly="true">
+                            <option *ngFor="let ep of examperiods" [ngValue]="ep" disabled="true">{{ ep.name }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Exam Start</label>
+                        <input type="datetime-local" class="form-control" id="examstart" formControlName="examstart" readonly="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label> Exam End</label>
+                        <input type="datetime-local" class="form-control" id="examend" formControlName="examend" readonly="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exam"> Exam</label>
+                        <select class="form-control" formControlName="exam" [compareWith]="compareExams" readonly="true">
+                            <option *ngFor="let e of exams" [ngValue]="e" disabled="true">{{ e.name }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Exam Date</label>
+                        <input type="datetime-local" class="form-control" id="examdate" formControlName="examdate" readonly="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject"> Subject</label>
+                        <select class="form-control" formControlName="subject" [compareWith]="compareSubjects" readonly="true">
+                            <option *ngFor="let s of subjects" [ngValue]="s" disabled="true">{{ s.name }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registered"> Registered</label>
+                        <select class="form-control" formControlName="registered" required="true">
+                            <option [ngValue]="false">No</option>
+                            <option [ngValue]="true">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Comment</label>
+                        <textarea type="text" class="form-control" id="comment" formControlName="comment">
+                        </textarea>
+                    </div>
+
+                    <br />
+                    <button class="btn btn-success" type="submit">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

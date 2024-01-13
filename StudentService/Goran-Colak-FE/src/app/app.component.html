@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+
+    <ul class="navbar-nav" routerLinkActive="active">
+        <li class="nav-item">
+          <a href="/home" class="nav-link" routerLink="home">Home </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        </li>
+        <li class="nav-item" *ngIf="showProfessorBoard">
+            <a href="/professor" class="nav-link" routerLink="professor">Professor Board</a>
+          </li>
+        <li class="nav-item" *ngIf="showStudentBoard">
+            <a href="/student" class="nav-link" routerLink="student">Student Board</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link" routerLink="login">Login</a>
+        </li>
+    </ul>
+  
+    <ul class="navbar-nav" *ngIf="isLoggedIn && showAdminBoard === true">
+        <li class = "nav-item">
+            <a routerLink="students" routerLinkActive="active" class="nav-link" >Student List</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink="cities" routerLinkActive="active" class="nav-link" >City List</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink="titles" routerLinkActive="active" class="nav-link" >Title List</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink="professors" routerLinkActive="active" class="nav-link" >Professor List</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink="subjects" routerLinkActive="active" class="nav-link" >Subject List</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink="exams" routerLinkActive="active" class="nav-link" >Exam List</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink="examperiods" routerLinkActive="active" class="nav-link" >Exam Period List</a>
+        </li>
+        <li class = "nav-item">
+            <a routerLink="examregs" routerLinkActive="active" class="nav-link" >Exam Reg List</a>
+        </li>
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav" *ngIf="isLoggedIn && showProfessorBoard === true">
+        <li class = "nav-item">
+            <a routerLink="exams" routerLinkActive="active" class="nav-link" >Exam List</a>
+        </li>
+        <li class="nav-item">
+            <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link" (click)="logout()">LogOut</a>
+          </li>
+    </ul>
+
+    <ul class="navbar-nav" *ngIf="isLoggedIn && showStudentBoard === true">
+        <li class = "nav-item">
+            <a routerLink="examregs" routerLinkActive="active" class="nav-link" >Exam Reg List</a>
+        </li>
+        <li class="nav-item">
+            <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link" (click)="logout()">LogOut</a>
+          </li>
+    </ul>
+
+</nav>
+
+<h1 class="text-center"> Student Service </h1>
+<div class = "container">
+    <router-outlet></router-outlet>
+</div>

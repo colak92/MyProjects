@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="card col-md-6 offset-md-3 offset-md-3">
+        <h3 class="text-center"> Edit Subject </h3>
+            <hr />
+        <div class="row">
+            <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onEditFormSubmit()">
+
+                    <div class="form-group">
+                        <label> Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" minlength="3" required="true">
+                        <div *ngIf="editForm.dirty && name?.invalid" class="error" style="color: red;">
+                            Name required, min length 3 char.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Description</label>
+                        <textarea type="text" class="form-control" id="description" formControlName="description">
+                        </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label> No of ESP</label>
+                        <input type="number" class="form-control" id="noofesp" formControlName="noofesp" required="true">
+                        <div *ngIf="editForm.dirty && noofesp?.invalid" class="error" style="color: red;">
+                            No of ESP required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Year of Study</label>
+                        <input type="number" class="form-control" id="yearofstudy" formControlName="yearofstudy" required="true">
+                        <div *ngIf="editForm.dirty && yearofstudy?.invalid" class="error" style="color: red;">
+                            Year of Study required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="semester"> Semester</label>
+                        <select class="form-control" formControlName="semester" required="true">
+                            <option [ngValue]="null" disabled>--Select--</option>
+                            <option *ngFor="let s of semesterList" [ngValue]="s.name">
+                                {{ s.name }}
+                            </option>
+                        </select>
+                        <div *ngIf="editForm.dirty && semester?.invalid" class="error" style="color: red;">
+                            Semester required.
+                        </div>
+                    </div>
+
+                    <br />
+                    <button class="btn btn-success" type="submit">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

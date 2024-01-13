@@ -1,0 +1,31 @@
+<div class = "row">
+    <h2> Exam Period List</h2>
+</div>
+<br/>
+<div class = "row">
+    <button (click) = "addExamPeriod()" class = "btn btn-success" style="margin-left: 10px"> Add Exam Period</button>
+</div>
+<br/>
+<table class = "table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Exam Start</th>
+            <th>Exam End</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let examperiod of examperiods" >
+            <td>{{examperiod.name}}</td>
+            <td>{{examperiod.examstart | date:'medium'}}</td>
+            <td>{{examperiod.examend | date:'medium'}}</td>
+            <td>{{examperiod.status ? 'Active' : 'Inactive'}}</td>
+            <td>
+                <button (click) = "updateExamPeriod(examperiod.id!)" class = "btn btn-primary"> Update</button>
+                <button (click) = "deleteExamPeriod(examperiod.id!)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

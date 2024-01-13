@@ -1,0 +1,50 @@
+<h3> View Professor Details</h3>
+<div>
+    <div>
+        <label> <b> First Name: </b></label> {{professor.firstname}}
+    </div>
+
+    <div>
+        <label> <b> Last Name: </b></label> {{professor.lastname}}
+    </div>
+
+    <div>
+        <label> <b> Email: </b></label> {{professor.email}}
+    </div>
+
+    <div>
+        <label> <b> Address: </b></label> {{professor.address}}
+    </div>
+
+    <div>
+        <label> <b> Phone: </b></label> {{professor.phone}}
+    </div>
+
+    <div>
+        <label> <b> Reelection Date: </b></label> {{professor.reelectiondate | date:'fullDate'}}
+    </div>
+
+    <div *ngIf="professor.city">
+        <label> 
+            <b> City: </b>
+        </label> 
+        {{professor.city.name}}
+    </div>
+
+    <div *ngIf="professor.title">
+        <label> 
+            <b> Title: </b>
+        </label> 
+        {{professor.title.name}}
+    </div>
+
+    <div>
+        <label> 
+            <b> Subject: </b>
+        </label>
+        <div *ngFor="let subject of professor.subjectList">
+            {{subject.name}}
+        </div>
+    </div>
+
+</div>

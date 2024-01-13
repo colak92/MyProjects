@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete file</h1>
+<div mat-dialog-content>
+  {{confirmMessage}}
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close class="btn btn-success" (click)="dialogRef.close(false)">No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial class="btn btn-danger" (click)="dialogRef.close(true)">Yes</button>
+</div>
