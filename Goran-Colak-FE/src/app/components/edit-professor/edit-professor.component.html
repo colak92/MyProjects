@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="card col-md-6 offset-md-3 offset-md-3">
+        <h3 class="text-center"> Edit Professor </h3>
+            <hr />
+        <div class="row">
+            <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onEditFormSubmit()">
+
+                    <div class="form-group">
+                        <label> First Name</label>
+                        <input type="text" class="form-control" id="firstname" formControlName="firstname" minlength="3" required="true">
+                        <div *ngIf="editForm.dirty && firstname?.invalid" class="error" style="color: red;">
+                            First Name required, minimum length 3 char.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Last Name</label>
+                        <input type="text" class="form-control" id="lastname" formControlName="lastname" minlength="3" required="true">
+                        <div *ngIf="editForm.dirty && lastname?.invalid" class="error" style="color: red;">
+                            Last Name required, minimum length 3 char.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Email</label>
+                        <input type="text" class="form-control" id="email" formControlName="email" email="true">
+                        <div *ngIf="editForm.dirty && email?.invalid" class="error" style="color: red;">
+                            Email is not valid.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Address</label>
+                        <input type="text" class="form-control" id="address" formControlName="address" minlength="3">
+                        <div *ngIf="editForm.dirty && address?.invalid" class="error" style="color: red;">
+                            Minimum length 3 char.
+                         </div>
+                    </div>
+					
+					<div class="form-group">
+                        <label> Phone</label>
+                        <input type="text" class="form-control" id="phone" formControlName="phone">
+                        <div *ngIf="editForm.get('phone')!.hasError('pattern')" class="error" style="color: red;">
+                            (+381)-country code | (65)-operator number | (7/8 digits)-your number 
+                        </div>
+                    </div>
+					
+					<div class="form-group">
+                        <label> Reelection Date</label>
+                        <input type="datetime-local" class="form-control" id="reelectiondate" formControlName="reelectiondate" required="true">
+                        <div *ngIf="editForm.dirty && reelectiondate?.invalid" class="error" style="color: red;">
+                            Reelection Date required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cityId"> City</label>
+                        <select class="form-control" formControlName="cityId">
+                            <option [ngValue]="null">--Select--</option>
+                            <option *ngFor="let c of cityList" [ngValue]="c.id" [selected]="c.id === this?.cityId">{{ c.name }}</option>
+                        </select>
+                    </div>
+					
+					<div class="form-group">
+                        <label for="titleId"> Title</label>
+                        <select class="form-control" formControlName="titleId" required="true">
+                            <option [ngValue]="null" disabled>--Select--</option>
+                            <option *ngFor="let t of titleList" [ngValue]="t.id" [selected]="t.id === this?.titleId">{{ t.name }}</option>
+                        </select>
+                        <div *ngIf="editForm.dirty && titleId?.invalid" class="error" style="color: red;">
+                            Title required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subjectList"> Subject</label>
+                        <select class="form-control" formControlName="subjectList" required="true" multiple="true">
+                            <option [ngValue]="null" disabled>--Select--</option>
+                            <option *ngFor="let s of subjectData" [ngValue]="s">{{ s.name }}</option>
+                        </select>
+                        <div *ngIf="editForm.dirty && subjectList?.invalid" class="error" style="color: red;">
+                            Subject required.
+                        </div>
+                    </div>
+
+                    <br />
+                    <button class="btn btn-success" type="submit">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

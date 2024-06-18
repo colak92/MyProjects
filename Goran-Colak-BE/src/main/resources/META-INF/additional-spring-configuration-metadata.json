@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "com.eng.backend.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'com.eng.backend.jwtSecret'"
+  },
+  {
+    "name": "com.eng.backend.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'com.eng.backend.jwtExpirationMs'"
+  }
+]}

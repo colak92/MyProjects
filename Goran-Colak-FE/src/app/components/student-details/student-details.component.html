@@ -1,0 +1,41 @@
+<h3> View Student Details</h3>
+<div>
+    <div>
+        <label> <b> Index Number: </b></label> {{student.indexnumber}}
+    </div>
+
+    <div>
+        <label> <b> Index Year: </b></label> {{student.indexyear}}
+    </div>
+
+    <div>
+        <label> <b> First Name: </b></label> {{student.firstname}}
+    </div>
+
+    <div>
+        <label> <b> Last Name: </b></label> {{student.lastname}}
+    </div>
+
+    <div>
+        <label> <b> JMBG: </b></label> {{student.jmbg}}
+    </div>
+
+    <div>
+        <label> <b> Email: </b></label> {{student.email}}
+    </div>
+
+    <div>
+        <label> <b> Address: </b></label> {{student.address}}
+    </div>
+
+    <div *ngIf="student.city">
+        <label> 
+            <b> City: </b>
+        </label> 
+        {{student.city.name}}
+    </div>
+
+    <div>
+        <label> <b> Current Year of Study: </b></label> {{student.currentyearofstudy}}
+    </div>
+</div>

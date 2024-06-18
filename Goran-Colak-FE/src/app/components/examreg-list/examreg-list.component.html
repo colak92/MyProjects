@@ -1,0 +1,42 @@
+<div class = "row">
+    <h2> Exam Registration List</h2>
+</div>
+<br>
+<table class = "table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>JMBG</th>
+            <th>Exam Period</th>
+            <th>Period Start</th>
+            <th>Period End</th>
+            <th>Exam Date</th>
+            <th>Grade</th>
+            <th>Passed</th>
+            <th>Registered</th>
+            <th>Subject</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let examreg of examregs" >
+            <td>{{examreg.exam.student?.firstname}}</td>
+            <td>{{examreg.exam.student?.lastname}}</td>
+            <td>{{examreg.exam.student?.jmbg}}</td>
+            <td>{{examreg.exam.examperiod?.name}}</td>
+            <td>{{examreg.exam.examperiod?.examstart | date:'medium'}}</td>
+            <td>{{examreg.exam.examperiod?.examend | date:'medium'}}</td>
+            <td>{{examreg.exam.examdate | date:'medium'}}</td>
+            <td>{{examreg.exam.grade}}</td>
+            <td>{{examreg.exam.passed ? 'Yes' : 'No'}}</td>
+            <td>{{examreg.exam.registered ? 'Yes' : 'No'}}</td>
+            <td>{{examreg.exam.subject?.name}}</td>
+            <td>{{examreg.comment}}</td>
+            <td>
+                <button [disabled]="examreg.exam.passed ? 'disabled' : null" (click) = "examRegistration(examreg.id)" class = "btn btn-primary"> Exam Registration</button>
+                <button (click) = "deleteExamReg(examreg.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

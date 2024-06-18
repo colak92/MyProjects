@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="card col-md-6 offset-md-3 offset-md-3">
+        <h3 class="text-center"> Edit Exam </h3>
+            <hr />
+        <div class="row">
+            <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onEditFormSubmit()">
+
+                    <div class="form-group">
+                        <label> Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" required="true">
+                        <div *ngIf="editForm.dirty && name?.invalid" class="error" style="color: red;">
+                            Name required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Exam Date</label>
+                        <input type="datetime-local" class="form-control" id="examdate" formControlName="examdate" required="true">
+                        <div *ngIf="editForm.dirty && examdate?.invalid" class="error" style="color: red;">
+                            Exam Date required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Grade</label>
+                        <input type="number" class="form-control" id="grade" formControlName="grade" min="5" max="10" maxlength="1">
+                        <div *ngIf="editForm.dirty && grade?.invalid" class="error" style="color: red;">
+                            Grade must have 1 digit (5-10).
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passed"> Passed</label>
+                        <select class="form-control" formControlName="passed" required="true">
+                            <option [ngValue]="false">No</option>
+                            <option [ngValue]="true">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registered"> Registered</label>
+                        <select class="form-control" formControlName="registered" required="true">
+                            <option [ngValue]="false">No</option>
+                            <option [ngValue]="true">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="examPeriodId"> Exam period</label>
+                        <select class="form-control" formControlName="examPeriodId" required="true">
+                            <option [ngValue]="null" disabled>--Select--</option>
+                            <option *ngFor="let ep of examPeriodList" [ngValue]="ep.id" [selected]="ep.id === this?.examPeriodId">{{ ep.name }}</option>
+                        </select>
+                        <div *ngIf="editForm.dirty && examPeriodId?.invalid" class="error" style="color: red;">
+                            Exam period required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subjectId"> Subject</label>
+                        <select class="form-control" formControlName="subjectId" required="true">
+                            <option [ngValue]="null" disabled>--Select--</option>
+                            <option *ngFor="let s of subjectList" [ngValue]="s.id" [selected]="s.id === this?.subjectId">{{ s.name }}</option>
+                        </select>
+                        <div *ngIf="editForm.dirty && subjectId?.invalid" class="error" style="color: red;">
+                            Subject required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="professorId"> Professor</label>
+                        <select class="form-control" formControlName="professorId" required="true">
+                            <option [ngValue]="null" disabled>--Select--</option>
+                            <option *ngFor="let p of professorList" [ngValue]="p.id" [selected]="p.id === this?.professorId">{{ p.firstname + ' ' + p.lastname }}</option>
+                        </select>
+                        <div *ngIf="editForm.dirty && professorId?.invalid" class="error" style="color: red;">
+                            Professor required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentId"> Student</label>
+                        <select class="form-control" formControlName="studentId" required="true">
+                            <option [ngValue]="null" disabled>--Select--</option>
+                            <option *ngFor="let s of studentList" [ngValue]="s.id" [selected]="s.id === this?.studentId">{{ s.firstname + ' ' + s.lastname }}</option>
+                        </select>
+                        <div *ngIf="editForm.dirty && studentId?.invalid" class="error" style="color: red;">
+                            Student required.
+                        </div>
+                    </div>
+
+                    <br />
+                    <button class="btn btn-success" type="submit">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

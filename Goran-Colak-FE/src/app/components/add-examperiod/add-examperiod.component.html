@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="card col-md-6 offset-md-3 offset-md-3">
+        <h3 class="text-center"> Add Exam Period </h3>
+            <hr />
+        <div class="row">
+            <div class="card-body">
+                <form [formGroup]="addForm" (ngSubmit)="onAddFormSubmit()">
+
+                    <div class="form-group">
+                        <label> Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" required="true">
+                        <div *ngIf="addForm.dirty && name?.invalid" class="error" style="color: red;">
+                            Name required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Exam Start</label>
+                        <input type="datetime-local" class="form-control" id="examstart" formControlName="examstart" required="true">
+                        <div *ngIf="addForm.dirty && examstart?.invalid" class="error" style="color: red;">
+                            Exam Start required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label> Exam End</label>
+                        <input type="datetime-local" class="form-control" id="examend" formControlName="examend" required="true">
+                        <div *ngIf="addForm.dirty && examend?.invalid" class="error" style="color: red;">
+                            Exam End required.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status"> Status</label>
+                        <select class="form-control" formControlName="status" required="true">
+                            <option [ngValue]="null" disabled>--Select--</option>
+                            <option *ngFor="let s of statusList" [ngValue]="s.id">
+                                {{ s.name }}
+                            </option>
+                        </select>
+                        <div *ngIf="addForm.dirty && status?.invalid" class="error" style="color: red;">
+                            Status required.
+                        </div>
+                    </div>
+
+                    <br />
+                    <button class="btn btn-success" type="submit">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
