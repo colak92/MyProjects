@@ -16,7 +16,7 @@ public class QuestionPanel extends JPanel {
 	private static final long serialVersionUID = 1717362871467184002L;
 
 	private AnswersPanel answersPanel;
-	private JTextArea questionContent = new JTextArea(20, 120);
+	private JTextArea questionContent = new JTextArea(30, 140);
 
 	public QuestionPanel() {
 		this.setLayout(new BorderLayout());
@@ -38,7 +38,7 @@ public class QuestionPanel extends JPanel {
 
 		questionContent.setLineWrap(true);
 		questionContent.setEditable(false);
-		questionContent.setPreferredSize(new Dimension(400, 400)); // 600 800
+		questionContent.setPreferredSize(new Dimension(600, 800));
 		panel.add(scrollPane);
 
 		return panel;

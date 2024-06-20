@@ -34,7 +34,7 @@ public class JavaCert {
 		counter = 0;
 
 		while (counter < count) {
-			int randomNum = (int) (Math.random() * 495); // Number of questions
+			int randomNum = (int) (Math.random() * 495); // Number of questions in file
 			if (examQuestions.contains(allQuestions.get(randomNum)) == false) {
 				counter++;
 				examQuestions.add(allQuestions.get(randomNum));

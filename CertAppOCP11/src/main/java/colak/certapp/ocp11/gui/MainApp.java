@@ -86,7 +86,7 @@ public class MainApp {
 
 	protected void buildGui() {
 		frame = new JFrame("Java Certification OCP 11");
-		frame.setPreferredSize(new Dimension(1440, 900));
+		frame.setPreferredSize(new Dimension(1600, 1024));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
