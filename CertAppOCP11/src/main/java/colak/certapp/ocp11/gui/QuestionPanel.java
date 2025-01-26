@@ -3,6 +3,7 @@ package colak.certapp.ocp11.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -16,7 +17,7 @@ public class QuestionPanel extends JPanel {
 	private static final long serialVersionUID = 1717362871467184002L;
 
 	private AnswersPanel answersPanel;
-	private JTextArea questionContent = new JTextArea(30, 140);
+	private JTextArea questionContent = new JTextArea(23, 105);
 
 	public QuestionPanel() {
 		this.setLayout(new BorderLayout());
@@ -30,15 +31,17 @@ public class QuestionPanel extends JPanel {
 		wrapper.setLayout(new FlowLayout(FlowLayout.LEFT));
 		return wrapper;
 	}
-
+	
 	private JPanel createQuestionPanel() {
 		JPanel panel = new JPanel();
 		panel.setBorder(BorderFactory.createEtchedBorder());
 		JScrollPane scrollPane = new JScrollPane(questionContent);
-
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		questionContent.setLineWrap(true);
 		questionContent.setEditable(false);
-		questionContent.setPreferredSize(new Dimension(600, 800));
+		questionContent.setPreferredSize(new Dimension(600, 600));
+		questionContent.setFont(new Font("MonoLisa", 2, 18));
+		panel.add(scrollPane, BorderLayout.CENTER);
 		panel.add(scrollPane);
 
 		return panel;

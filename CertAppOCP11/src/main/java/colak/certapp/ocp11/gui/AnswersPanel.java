@@ -1,6 +1,7 @@
 package colak.certapp.ocp11.gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -43,13 +44,13 @@ public class AnswersPanel extends JPanel {
 					}
 				}
 			});
+			
 			checkBoxes.add(box);
-
 			JTextField field = new JTextField("");
 			field.setEditable(false);
 			field.setBackground(Color.WHITE);
+			field.setFont(new Font("MonoLisa", 2, 16));
 			labels.add(field);
-
 			rowPanel.add(box);
 			rowPanel.add(field);
 		}
