@@ -1,0 +1,42 @@
+<div class = "row">
+    <h2> Exam List</h2>
+</div>
+<br/>
+<div class = "row">
+    <button (click) = "addExam()" class = "btn btn-success" style="margin-left: 10px"> Add Exam</button>
+    <button (click) = "openDialog()" class = "btn btn-success" style="margin-left: 10px" [disabled]="btnRegExamDisabled" [ariaModal]="true"> Register Exam</button>
+</div>
+<br/>
+<table class = "table table-striped table-bordered" [ariaMultiSelectable]="true">
+    <thead>
+        <tr>
+            <th style="text-align: center;">Check Exam</th>
+            <th>Name</th>
+            <th>Exam Date</th>
+            <th>Exam Period</th>
+            <th>Subject</th>
+            <th>Professor</th>
+            <th style="width: 300px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let exam of exams" >
+            <td>
+                <input style="width: 100px; height: 20px; margin-top: 15px;"
+                  type="checkbox"
+                  [checked]="isSelected(exam)"
+                  (change)="onChange(exam)"
+                />
+            </td>
+            <td>{{exam.name}}</td>
+            <td>{{exam.examdate | date:'medium'}}</td>
+            <td>{{exam.examPeriodName}}</td>
+            <td>{{exam.subjectName}}</td>
+            <td>{{exam.professorFirstName + ' ' + exam.professorLastName}}</td>
+            <td style="width: 300px;">
+                <button (click) = "updateExam(exam.id!)" class = "btn btn-primary"> Update</button>
+                <button (click) = "deleteExam(exam.id!)" class = "btn btn-danger" style="margin-left: 5px"> Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Exam Registration</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="onRegisterExamFormSubmit()">
+    <mat-form-field>
+      <mat-label>Selected Exams</mat-label>
+      <mat-select [(ngModel)]="selectedExams" [multiple]="true" [disabled]="isReadOnly" [ngModelOptions]="{standalone: true}" style="width: 350px;">
+        <mat-option *ngFor="let exam of data" [value]="exam">{{ exam.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label for="selectedStudent"> Student</label>
+      <select class="form-control" [(ngModel)]="selectedStudent" required="true" [ngModelOptions]="{standalone: true}" style="width: 350px;">
+        <option [ngValue]="null">--Select--</option>
+        <option *ngFor="let s of students" [ngValue]="s">{{ s.firstname! + ' ' + s.lastname! }}</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+</mat-dialog-content>

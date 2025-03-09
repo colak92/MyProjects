@@ -1,0 +1,243 @@
+<div class="col-md-12">
+  <div class="card card-container">
+    <h3 class="text-center"> Register Form </h3>
+    <hr />
+    <div class="row">
+      <div class="card-body">
+        <form *ngIf="!isSuccessful" id="registerFormId" [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onFormSubmit()" novalidate="true">
+
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" id="username" formControlName="username" required="true">
+
+            <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="alert alert-danger"
+              role="alert">
+              <div *ngIf="username?.errors?.['required']">
+                Username is required.
+              </div>
+              <div *ngIf="username?.errors?.['minlength']">
+                Username must be at least 3 characters long.
+              </div>
+              <div *ngIf="username?.errors?.['maxlength']">
+                Username must not be longer than 20 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" email="true" required="true">
+
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="email?.errors?.['required']">
+                Email is required.
+              </div>
+              <div *ngIf="email?.errors?.['email']">
+                Email is not valid.
+              </div>
+              <div *ngIf="email?.errors?.['maxlength']">
+                Email must not be longer than 50 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password" required="true">
+
+            <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="password?.errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="password?.errors?.['minlength']">
+                Password must be at least 6 characters long.
+              </div>
+              <div *ngIf="password?.errors?.['maxlength']">
+                Password must not be longer than 40 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select class="form-control" formControlName="role" required="true"
+              (ngModelChange)="onSelectionChange($event)">
+              <option [ngValue]="null" disabled>--Select--</option>
+              <option *ngFor="let r of roleList" [ngValue]="r">
+                {{ r.name }}
+              </option>
+            </select>
+            <div *ngIf="role?.invalid && (role?.dirty || role?.touched)" class="alert alert-danger" role="alert">
+              Role is required.
+            </div>
+          </div>
+
+        </form>
+
+        <form *ngIf="!isSuccessful" [formGroup]="professorForm" (ngSubmit)="professorForm.valid && onFormSubmit()" novalidate="true">
+
+          <!-- Professor data -->
+
+          <div class="form-group">
+            <label [hidden]="isProfessorData"> First Name</label>
+            <input type="text" class="form-control" id="professorFirstName" formControlName="professorFirstName" required="true" [hidden]="isProfessorData">
+            
+            <div *ngIf="professorFirstName?.invalid && (professorFirstName?.dirty || professorFirstName?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="professorFirstName?.errors?.['required']">
+                First Name is required.
+              </div>
+              <div *ngIf="professorFirstName?.errors?.['minlength']">
+                First Name must be at least 3 characters long.
+              </div>
+              <div *ngIf="professorFirstName?.errors?.['maxlength']">
+                First Name must not be longer than 15 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label [hidden]="isProfessorData"> Last Name</label>
+            <input type="text" class="form-control" id="professorLastName" formControlName="professorLastName" required="true" [hidden]="isProfessorData">
+
+            <div *ngIf="professorLastName?.invalid && (professorLastName?.dirty || professorLastName?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="professorLastName?.errors?.['required']">
+                Last Name is required.
+              </div>
+              <div *ngIf="professorLastName?.errors?.['minlength']">
+                Last Name minimum length must be 3 char.
+              </div>
+              <div *ngIf="professorLastName?.errors?.['maxlength']">
+                Last Name must not be longer than 15 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label [hidden]="isProfessorData"> Reelection Date</label>
+            <input type="datetime-local" class="form-control" id="reelectionDate" formControlName="reelectionDate" required="true" [hidden]="isProfessorData">
+
+            <div *ngIf="reelectionDate?.invalid && (reelectionDate?.dirty || reelectionDate?.touched)" class="alert alert-danger" role="alert">
+              <div *ngIf="reelectionDate?.errors?.['required']">
+                Reelection Date is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="title" [hidden]="isProfessorData"> Title</label>
+            <select class="form-control" formControlName="title" required="true" [hidden]="isProfessorData">
+              <option [ngValue]="null" disabled>--Select--</option>
+              <option *ngFor="let t of titleList" [ngValue]="t">{{ t.name }}</option>
+            </select>
+
+            <div *ngIf="title?.invalid && (title?.dirty || title?.touched)" class="alert alert-danger" title="alert">
+              Title is required.
+            </div>
+          </div>
+        </form>
+
+        <form *ngIf="!isSuccessful" [formGroup]="studentForm" (ngSubmit)="studentForm.valid && onFormSubmit()" novalidate="true">
+
+          <!-- Student data -->
+
+          <div class="form-group">
+            <label [hidden]="isStudentData"> Index Number</label>
+            <input type="text" class="form-control" id="indexNumber" formControlName="indexNumber" required="true" [hidden]="isStudentData">
+
+            <div *ngIf="indexNumber?.invalid && (indexNumber?.dirty || indexNumber?.touched)" class="alert alert-danger"
+              role="alert">
+              <div *ngIf="indexNumber?.errors?.['required']">
+                Index Number is required.
+              </div>
+              <div *ngIf="indexNumber?.errors?.['minlength'] || indexNumber?.errors?.['maxlength']">
+                Index Number must have exact 4 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label [hidden]="isStudentData"> Index Year</label>
+            <input type="number" class="form-control" id="indexYear" formControlName="indexYear" required="true" [hidden]="isStudentData">
+
+            <div *ngIf="indexYear?.invalid && (indexYear?.dirty || indexYear?.touched)" class="alert alert-danger"
+              role="alert">
+              <div *ngIf="indexYear?.errors?.['required']">
+                Index Year is required.
+              </div>
+              <div *ngIf="indexYear?.errors?.['min'] || indexYear?.errors?.['max']">
+                Index Year must be in range from 2000 to 2100.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label [hidden]="isStudentData"> First Name</label>
+            <input type="text" class="form-control" id="studentFirstName" formControlName="studentFirstName" required="true" [hidden]="isStudentData">
+
+            <div *ngIf="studentFirstName?.invalid && (studentFirstName?.dirty || studentFirstName?.touched)"
+              class="alert alert-danger" role="alert">
+              <div *ngIf="studentFirstName?.errors?.['required']">
+                First Name is required.
+              </div>
+              <div *ngIf="studentFirstName?.errors?.['minlength']">
+                First Name minimum length must be 3 char.
+              </div>
+              <div *ngIf="studentFirstName?.errors?.['maxlength']">
+                First Name must not be longer than 15 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label [hidden]="isStudentData"> Last Name</label>
+            <input type="text" class="form-control" id="studentLastName" formControlName="studentLastName" required="true" [hidden]="isStudentData">
+
+            <div *ngIf="studentLastName?.invalid && (studentLastName?.dirty || studentLastName?.touched)"
+              class="alert alert-danger" role="alert">
+              <div *ngIf="studentLastName?.errors?.['required']">
+                Last Name is required.
+              </div>
+              <div *ngIf="studentLastName?.errors?.['minlength']">
+                Last Name minimum length must be 3 char.
+              </div>
+              <div *ngIf="studentLastName?.errors?.['maxlength']">
+                Last Name must not be longer than 15 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label [hidden]="isStudentData"> Current Year of Study</label>
+            <input type="number" class="form-control" id="currentYearoFStudy" formControlName="currentYearoFStudy" required="true" [hidden]="isStudentData">
+
+            <div *ngIf="currentYearoFStudy?.invalid && (currentYearoFStudy?.dirty || currentYearoFStudy?.touched)"
+              class="alert alert-danger" role="alert">
+              <div *ngIf="currentYearoFStudy?.errors?.['required']">
+                Current Year of Study is required.
+              </div>
+              <div *ngIf="currentYearoFStudy?.errors?.['min'] || currentYearoFStudy?.errors?.['max']">
+                Current Year of Study must be in range from 1 to 4.
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" form="registerFormId" [disabled]="!(this.registerForm.valid && this.professorForm.valid || this.studentForm.valid)" [hidden]="isSuccessful">
+            Sign Up
+          </button>
+        </div>
+
+        <div class="alert alert-warning" *ngIf="isSignUpFailed && isSubmitted">
+          Signup failed! <br />{{ errorMessage }}
+        </div>
+
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          Your registration is successful!
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

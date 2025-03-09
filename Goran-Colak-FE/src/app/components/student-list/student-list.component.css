@@ -1,0 +1,8 @@
+::ng-deep .mat-step-header{
+    pointer-events: none !important;
+}
+
+::ng-deep .mat-tooltip {
+    background-color: darkblue;
+    font-size: 16px;
+}

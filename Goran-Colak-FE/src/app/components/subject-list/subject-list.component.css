@@ -1,0 +1,23 @@
+::ng-deep .mat-step-header{
+    pointer-events: none !important;
+}
+
+.styled-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect the width */
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    resize: none;
+    /* Allow users to resize vertically */
+}
+
+.styled-textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    /* Green glow effect */
+}
