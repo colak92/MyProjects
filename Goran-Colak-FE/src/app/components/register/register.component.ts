@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   registerForm!: FormGroup;
   professorForm!: FormGroup;
@@ -24,6 +24,8 @@ export class RegisterComponent implements OnInit {
   selectedRoleName: string | null = null;
   selectedTitleName: string | null = null;
 
+  isSubmitDisabled = true;
+
   roleList = [
     { id: 1, name: "Professor" },
     { id: 2, name: "Student" }
@@ -39,12 +41,46 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService
-  ) { }
+  ) {
 
-  ngOnInit(): void {
-    this.buildRegisterForm();
-    this.buildProfessorForm();
-    this.buildStudentForm();
+    this.registerForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
+      role: ['', [Validators.required]]
+    });
+
+    this.professorForm = this.formBuilder.group({
+      professorFirstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      professorLastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      reelectionDate: [null, [Validators.required]],
+      title: ['', [Validators.required]]
+    });
+
+    this.studentForm = this.formBuilder.group({
+      indexNumber: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]],
+      indexYear: [2000, [Validators.required, Validators.min(2000), Validators.max(2100)]],
+      studentFirstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      studentLastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      currentYearoFStudy: [1, [Validators.required, Validators.min(1), Validators.max(4)]]
+    });
+
+    this.registerForm.valueChanges.subscribe(() => this.updateButtonState());
+    this.professorForm.valueChanges.subscribe(() => this.updateButtonState());
+    this.studentForm.valueChanges.subscribe(() => this.updateButtonState());
+  }
+
+  updateButtonState() {
+    const isRegisterFormValid = this.registerForm.valid;
+    const isProfessorFormValid = this.professorForm.valid;
+    const isStudentFormValid = this.studentForm.valid;
+
+    if (isRegisterFormValid && (isProfessorFormValid || isStudentFormValid)) {
+      this.isSubmitDisabled = false;
+      console.log('Button state: ' + this.isSubmitDisabled);
+    } else {
+      this.isSubmitDisabled = true;
+    }
   }
 
   buildRegisterForm() {
@@ -63,11 +99,6 @@ export class RegisterComponent implements OnInit {
       reelectionDate: [null, [Validators.required]],
       title: ['', [Validators.required]]
     });
-
-    // Optionally listen for form state changes
-    this.professorForm.valueChanges.subscribe(value => {
-      console.log('Professor form status: ' + this.professorForm.status);  // Check the form's validity status
-    });
   }
 
   buildStudentForm() {
@@ -77,11 +108,6 @@ export class RegisterComponent implements OnInit {
       studentFirstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       studentLastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       currentYearoFStudy: [1, [Validators.required, Validators.min(1), Validators.max(4)]]
-    });
-
-    // Optionally listen for form state changes
-    this.studentForm.valueChanges.subscribe(value => {
-      console.log('Student form status: ' + this.studentForm.status);  // Check the form's validity status
     });
   }
 
