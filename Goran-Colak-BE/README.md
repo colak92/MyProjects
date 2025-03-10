@@ -19,7 +19,7 @@ USE `gorandb`;
 ```
 mvn spring-boot:run
 ```
-The Spring Boot Server will export API at port `4200`.
+The Spring Boot Server will export API at port `6060`.
 
 ## 3. Run Angular Client (Goran-Colak-FE)
 
@@ -27,10 +27,9 @@ The Spring Boot Server will export API at port `4200`.
 - Open command promnt (cmd) and find location of Goran-Colak-FE\
 - Enter command (code .) to open project data in Visual Studio Code
 - Open terminal and execute (cd Goran-Colak-FE) and execute (npm install)
-- Next in terminal execute (ng serve --port 4200) to run Goran-Colak-FE project
+- Next in terminal execute (ng serve --port 6060) to run Goran-Colak-FE project
 - Now frontend project is running ... 
 
 ```
 npm install
-ng serve --port 4200
-
+ng serve --port 6060
